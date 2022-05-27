@@ -1,0 +1,29 @@
+{
+  "name": "teamcontactsheet",
+  "version": "1.0.0",
+  "description": "CLI Prompt to Build HTML Team Contact Sheet",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phaberle/TeamContactSheet.git"
+  },
+  "keywords": [],
+  "author": "Paul Haberle <paulshaberle@gmail.com> (https://github.com/phaberle?tab=repositories)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phaberle/TeamContactSheet/issues"
+  },
+  "homepage": "https://github.com/phaberle/TeamContactSheet#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  },
+  "devDependencies": {
+    "jest": "^28.1.0"
+  }
+}
