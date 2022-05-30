@@ -3,6 +3,7 @@ const inquirer = require('inquirer');
 const Manager = require('./Manager');
 const Engineer = require('./Engineer');
 const Intern = require('./Intern');
+const HTML = require('./html');
 
 const storage = [];
 const TeamMgr = mgrData => {
@@ -37,11 +38,18 @@ const TeamMgr = mgrData => {
             mgr.name = mgrData.MgrName;
             mgr.email = mgrData.MgrEmail;
             mgr.officeNumber = mgrData.MgrOfficeNumber;
-            mgr.role = mgr.getRole();  
-            storage.push(mgr);
-            return storage;       
+            mgr.role = mgr.getRole();
+            _mgr = {
+                mgr_id: mgr.id,
+                mgr_name: mgr.name,
+                mgr_email: mgr.email,
+                mgr_officeNumber: mgr.officeNumber,
+                mgr_role: mgr.role
+            }
+            storage.push(_mgr);
+            return storage;
         })
-      
+
 }
 
 const aEngineer = eData => {
@@ -76,11 +84,17 @@ const aEngineer = eData => {
             engineer.name = eData.eName;
             engineer.id = eData.eID;
             engineer.email = eData.eEmail;
-            engineer.github = eData.eGitHub;    
-            storage.push(engineer);
-            return storage;       
+            engineer.github = eData.eGitHub;
+            _eng = {
+                eng_name: engineer.name,
+                eng_id: engineer.id,
+                eng_email: engineer.email,
+                eng_github: engineer.github
+            }
+            storage.push(_eng);
+            return storage;
         })
-      
+
 }
 
 const aIntern = iData => {
@@ -115,28 +129,29 @@ const aIntern = iData => {
             intern.id = iData.iId;
             intern.email = iData.iEmail;
             intern.school = iData.iSchool;
-            storage.push(intern);
+            _int = {
+                int_name: intern.name,
+                int_id:intern.id,
+                int_email:intern.email,
+                int_school:intern.school
+            }
+            storage.push(_int);
             return storage;
         })
-     
+
 }
 
-sendToHTML = (object) => {
-    console.log(storage);
-}
-
-TeamMgr()
-.then(storage =>{
-    aEngineer()
+execute= ()=>{
+    TeamMgr()
     .then(storage =>{
-        aIntern()
+        aEngineer()
         .then(storage =>{
-            sendToHTML(storage)
+            aIntern()
+            .then(storage =>{
+                sendToHTML(storage)
+            })
         })
     })
-})
+}
 
-
-
-
-
+module.exports={TeamMgr}
